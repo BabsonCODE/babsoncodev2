@@ -1,0 +1,127 @@
+body {
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+center{
+	max-height: 100%;
+}
+.gabe{
+	background: url("http://i.giphy.com/JefOmXkBr0hWw.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+    margin: 0;
+}
+.overlay{
+	height: 100%;
+	width: 100%;
+	box-shadow: inset 20px 20px 20em #000000;
+}
+.logo{
+	width: 50%;
+}
+
+.txt{
+    color: white;
+    font-family: Helvetica-light;
+    font-size: 2em;
+}
+.fb{
+    font-family: 'Helvetica';
+
+}
+
+.arrow{
+    position: fixed;
+    bottom: 5px; 
+    left: 46%;  
+}
+
+.quote{
+	background-image: url('../images/bos.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.quote p{
+    width: 80%;
+    text-align: center;
+    color: white;
+    font-size: 3em;
+    font-family: Helvetica;
+    font-style: italic;
+    margin-top: 20%;
+}
+
+.arrow{
+    margin-top: 5%;
+    width: 8%;
+}
+.background{
+	height: 100%;
+}
+@media all and (min-width: 0px) and (max-width:600px) {
+	.arrow{
+	    width: 15%;
+	    left: 43%;
+	}
+}
+
+a {
+  color: #00B7FF;
+}
+.background{
+	background-color: #d8d8d8;
+	height: 100%;
+	width: 100%;
+}
+.selector{
+	color: #5c5c5c;
+	padding: 10% 0;
+	border-right: 1px solid grey;
+	height: 100%;
+}
+.selector img{
+	padding: 5%;
+	padding-top: 10%;
+	height: 200px
+}
+#last{
+	border:none !important;
+}
+.selector:hover{
+	background-color: #97b297;
+}
+
+@media all and (min-width: 300px) and (max-width: 780px){
+	.selector{
+		border:none;
+		padding: 0;
+		height: 33%;
+	}
+	.selector img{
+		width: 50%;
+		padding-top: 0;
+
+	}
+	#comm{
+		margin-top: -7%;
+	}
+}
+@media (min-width: 300px) and (max-width: 760px){
+	.logo{
+			width: 100%;
+			margin-top: 40%;
+		}
+}
+@media all and (min-width: 760px) and (max-width: 800px){
+	.logo{
+		margin-top: 20%;
+	}
+}

@@ -1,0 +1,220 @@
+{{#if error}}
+<div class = "alert alert-danger" role = "alert">
+	<span class="glychicon glychicon-exclamation-sign" aria-hidden = "true"></span>
+	<span class = "sr-only">Error:</span>
+	{{error}}
+</div>
+{{/if}}
+
+<style>
+.sidebar-nav > .sidebar-brand{
+  height: 45px !important;
+  margin: 10px 0
+}
+.sidebar-nav > .sidebar-brand p{
+  color: #999999;
+  font-size: 1.3em;
+}
+.home{
+  font-size: 1.4em;
+  color: #FC585F !important;
+}
+.line{
+  margin-bottom: 0px !important;
+}
+.current{
+  background: #FC585F !important;
+  color: #FFF !important
+}
+.profile_img{
+	width: 100%;
+	height: 250px;
+	background-image: url({{imageUrl}});
+	background-size: cover;
+	border: 1px solid black;
+}
+.welcome{
+	text-align: center;
+	color: #FFF;
+	margin-top: 15%;
+}
+h1{
+	text-align: center;
+}
+.overlay{
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,0.8);
+	position: fixed;
+	z-index: 1001;
+}
+.overlay_body{
+	width: 100vw;
+	height: 100vh;
+	background:rgba(0,0,0,0.8);
+
+}
+.overlay_text{
+	text-align: center;
+	color: #FFF;
+}
+.next button{
+	padding: 20px 30px;
+	background: none;
+	border: 3px solid #FFF;
+	border-radius: 10px;
+}
+.next button:hover{
+	border-color: #006400;
+	color: #006400;
+}
+.main-page{
+	display: none;
+	height: 100vh;
+}
+.btn-default{
+	padding: 10px 20px;
+	color: black;
+	border: 1px solid black;
+	background:none;
+}
+textarea{
+	border-radius: 10px;
+	width: 40%;
+	height: 30%;
+	color: black;
+	text-align: center;
+	display: none;
+}
+#user{
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	height: 50%;
+}
+#user h3{
+	
+}
+#projects{
+	border-bottom: 1px solid black;
+	height: 50%;
+}
+#hackathons{
+	border-right: 1px solid black;
+	height: 50%;
+}
+</style>
+<body>
+<div class = "overlay">
+<div class = "overlay_text">
+ <div class = "welcome"><h1>W E L C  O M E <br> {{displayName}}</h1></div>
+  <div class = "part1"><h3 class="directions">Let's Get You Set Up</h3></div>
+  <div><textarea id = "motto"></textarea><textarea id = "passion"></textarea><textarea id = "skills"></textarea></div>
+  <div class = "next"><button id = "direction_button">N E X T</button></div>
+  <div class = "part1"></div>
+  </div>
+  </div>
+<div id="wrapper">
+<!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+            	<li style="height:6%;">
+            	<center>
+            		<div class = "profile_img"></div>
+            		</center>
+            	</li>
+                <li class="sidebar-brand">
+                    <a href="/dash_home" class="home">
+                        H O M E
+                    </a>
+                </li>
+                <hr class = 'line'>
+                <li class="sidebar-brand">
+                    <a href="/lead_vis_raw" class="current">P R O F I L E</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="/lead_vis_top_bottom">P R O J E C T S</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="/lead_vis" class = "">H A C K A T H O N S</a>
+                </li>
+                 <li class="sidebar-brand">
+                    <a href="/lead_vis" class = "">C O N T R A C T S</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  <div id="page-content-wrapper">
+  <div class = "container">
+	<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">T O G G L E</a>
+	<div class = "container main-page">
+	<div class="col-md-6" id = "user"><h3></h3></div>
+	<div class="col-md-6" id = "projects"></div>
+	<div class="col-md-6" id = "hackathons"></div>
+	<div class="col-md-6" id = "contracts"></div>
+	<div><p id = "test"></p></div>
+</div>
+</div>
+</div>	
+<script>
+$("#menu-toggle").click(function(e) {
+       e.preventDefault();
+       $("#wrapper").toggleClass("toggled");
+   });
+
+var count = 0;
+$('.next').on('click', function(){
+	count++;
+
+	if(count ===1){
+		$('.overlay').css('z-index', '1000');
+		$('.directions').text('Use the DashBoard To Navigate Pages')
+	}
+	if (count ===2){
+		$('#sidebar-wrapper').css('z-index', '999')
+
+		setTimeout((function(){
+			$('#page-content-wrapper').css('z-index', '1001');
+			$('.btn-default').css('background', '#FFF');
+			$('.directions').text('Click the Toggle Button to Open and Close the Dash')
+			}),400);
+	}
+	if(count ===3){
+		$('.overlay').css('z-index', '1002')
+		$('.directions').text("Let's fill out some information about yourself");
+	}
+
+	if(count ===4){
+		$('.directions').text("What's your motto?");
+		$('#motto').fadeIn();
+	}
+	if(count === 5){
+		$('#motto').fadeOut();
+		$('.directions').text("What are you passionate about?")
+		setTimeout((function(){$('#passion').fadeIn()}),200);
+	}
+	if(count === 6){
+		$('#passion').fadeOut();
+		$('.directions').text("What are your skills? Separate each skill with a comma")
+		setTimeout((function(){$('#skills').fadeIn()}),200);
+	}
+	if(count === 7){
+		$('#skills').fadeOut();
+		$('.directions').text("Thanks, that's it!! Have Fun!");
+	}
+	if(count === 8){
+		$.post('/profileInfo', {
+			motto: $('#motto').val(),
+			bio: $('#passion').val(),
+			skills: $('#skills').val()
+		}, function(data){
+			$('.overlay').fadeOut();
+			setTimeout((function(){$('.main-page').fadeIn()}), 200);
+			console.log(data);
+			console.log(data.user);
+			window.location.replace("/profileInfo");
+		})
+	}
+
+})
+</script>
+</body>

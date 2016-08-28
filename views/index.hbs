@@ -1,0 +1,71 @@
+<head>
+
+    <script type="text/javascript" src = "/javascripts/typed.js-master/typed.js"></script>
+
+    <!--  Full Page Js -->
+    <script type="text/javascript" src="/javascripts/fullPage.js-master/jquery.fullPage.js"></script>
+</head>
+
+<div id = "fullpage">
+<div class = "section">
+<div class = "gabe">
+<div class="overlay">
+     <center>    
+    <img class="logo" src="images/shit.png" alt="code logo"/>
+	</center>
+	<center>
+	  <img class="arrow" src="images/Arrow.svg" alt="arrow">  
+	  </center> 
+</div>
+</div>
+</div>
+<div class="section">
+<div class = "quote">
+    <p id ="quotetext"> </p>
+</div>
+</div>
+<div class = "section">
+	<div class = background>
+	<div class="col-md-4 selector">
+		
+		<center>
+		<img src="/images/do.svg" id = "do">
+		</center>
+	</div>
+	<div class="col-md-4 selector">
+			<center>
+		<img src="/images/community.svg" id = "comm">
+		</center>
+		
+	</div>
+	<div class="col-md-4 selector" id = "last">
+	
+		<center>
+		<img src="/images/projects.svg" id = "projects">
+
+		</center>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('#fullpage').fullpage({ 
+
+				afterLoad: function(anchorLink, index){
+
+				if(index == 2){
+			 		$(function(){
+			      		$("#quotetext").typed({
+			      		  strings: ["Empowering Babson Entrepreneurs to build modern, world-changing and sustainable ventures."],
+			       		 typeSpeed: 0
+			     		 });
+ 		 			});
+ 				}
+ 				}
+			})
+	})
+
+	</script>
+</body>
