@@ -1,0 +1,63 @@
+
+<html lang="en-us">
+<head>
+    
+	<title>Babson Code</title>
+	<link rel="stylesheet" type="text/css" href="style/style3.css"/>
+    <meta name="viewport" content="width=device-width"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+   <a href="/" style="height:100%; width: 33.33%" class = "homeButton"> <div class="GreenBox">
+       <div class="backarrow"> <img src="images/backarrow.svg"></div>
+       <center> <img class="description" src="images/projects.svg"> <h1>we do hella rad shit bro like you dont even fuckin know nigga</h1></center>
+       </div></a>
+   
+ 
+    
+    <div class="GreyBox">
+        <div class="cardcontainer"></div>
+    </div>  
+
+   <script>
+       
+       
+    var render = function(name, descr, img){
+        
+        var wrapper = $('<div></div>');
+        var cardpadding = $('<div class = "cardpadding"></div>');
+        var card = $('<div class = "card"></div>');
+        var img = $('<center><img class="Project" src ="' + img + '"></center>');
+        var title = $('<div class="Title">' + name + '</div>');
+        var info = $('<div class="info">' + descr + '</div>');
+        
+        wrapper.append(cardpadding);
+        cardpadding.append(card);
+        card.append(img);
+        card.append(title);
+        card.append(info);
+        
+        return wrapper.html();
+        
+        
+    }
+       
+    $(document).ready(function(){
+        $.get('http://babsoncodev2.herokuapp.com/api/projects', 
+              function(data, status){
+                data.projects.forEach(function(obj,index){
+                    $('.cardcontainer').append(render(obj.name, obj.description, obj.imageUrl));
+                })
+        })
+    })
+    
+    
+    
+    </script>
+    
+    
+       
+
+</body>
+</html>

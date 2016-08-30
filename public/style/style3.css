@@ -1,0 +1,215 @@
+body{
+    background-color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+.GreenBox {
+	width: 33.33%;
+	height: 100vh;
+	background-color: rgba(26, 96, 26, 0.38);
+    z-index: -1;
+    position: fixed;
+    left: 0;
+}
+.WhiteBox {
+	width: 66.66%;
+	height: 50%;
+	background-color: #ffffff;
+    z-index: -1;
+    position:fixed;
+    right: 0;
+    bottom: 0;
+}
+.GreyBox {
+	width: 66.66%;
+	height: 50%;
+    z-index: -1;
+    position:fixed;
+    right: 0;
+    top: 0;
+}
+h1{
+    font-family: helvetica;
+    font-weight: 100;
+    color: #525252;
+    font-size: 170%;
+    padding-top: 20%; 
+}
+.cardcontainer{
+    padding-left: 5%;
+    padding-top: 2%;
+    height: 100vh;
+}
+.cardpadding{
+    width: 33%;
+	height: 50%;
+    float: left;
+}
+.card{
+	width: 85%;
+	height: 90%;
+	border-radius: 2%;
+	background-color: #ffffff;
+	box-shadow: -7px 11px 4px 0 rgba(0, 0, 0, 0.5);
+	border: solid 1px #979797;
+    object-position: center; 
+    float: left;
+}
+
+.description{
+    padding-top: 10%;
+    width: 50%;
+}
+
+.Community{
+    z-index: 1;
+    width: 100%;
+    height: auto;
+}
+
+.backarrow {
+  width: 100%;
+}
+
+.Project{
+    top:1;
+    object-position: center;
+    width: 100%;
+    height: 40%;
+    
+}
+
+.info{
+    font-family: helvetica;
+    font-weight: 100;
+    color: #525252;
+    font-size: 90%;
+    text-align: center;
+    padding: 2%;
+}
+
+.Title{
+    font-family: helvetica;
+    font-weight: 150;
+    color: #525252;
+    font-size: 120%;
+    text-align: center;
+    
+}
+
+
+
+@media all and (min-width: 300px) and (max-width: 780px){
+.GreenBox {
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(26, 96, 26, 0.38);
+    position: relative;
+}
+.homeButton{
+    width: 100% !important;
+}
+    
+.backarrow {
+  width: 100%;
+  z-index: 100000000;
+}
+    
+.WhiteBox {
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+    position: relative;
+}
+    .GreyBox {
+	width: 100%;
+	background-color: #e5e5e5;
+    position: relative;
+}
+    
+
+.name{
+    font-family: helvetica;
+    font-weight: 100;
+    color: #525252;
+    font-size: 150%;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width:90%;
+    height: 20%;
+    float: left;
+}
+    .cardcontainer{
+    padding-left: 12.5%;
+    padding-top: 10%;
+    height: 100vh;
+}
+.cardpadding{
+    width: 100%;
+	height: 80%;
+    float: left;
+}
+.card{
+	width: 85%;
+	height: 90%;
+	border-radius: 2%;
+	background-color: #ffffff;
+	box-shadow: -7px 11px 4px 0 rgba(0, 0, 0, 0.5);
+	border: solid 1px #979797;
+    object-position: center; 
+}
+
+.description{
+    padding-top: 10%;
+    width: 50%;
+}
+
+.Community{
+    z-index: 1;
+    width: 100%;
+    height: auto;
+}
+
+.backarrow {
+  width: 100%;
+}
+
+.Project{
+    top:0;
+    padding-top: 0;
+    object-position: center;
+    width: 100%;
+    height: 40%;
+    
+}
+
+.info{
+    font-family: helvetica;
+    font-weight: 100;
+    color: #525252;
+    font-size: 100%;
+    text-align: center;
+
+}
+
+.Title{
+    font-family: helvetica;
+    font-weight: 150;
+    color: #525252;
+    font-size: 170%;
+    text-align: center;
+    
+}
+
+    
+    
+    
+    
+    
+}

@@ -113,7 +113,7 @@ h3{
   <h4><span style="font-weight:800">Your Email:</span><br>{{email}}</h4>
   <h4><span style="font-weight:800">Your Website:</span><br>{{website}}</h4>
   <h4><span style="font-weight:800">Your Notes:</span></h4>
-  <textarea>{{notes}}</textarea>
+  <textarea id = "notes">{{notes}}</textarea>
 
 	</div>
 	<div class="col-md-6" id = "projects"><h3>YOUR PROJECTS</h3></div>
@@ -126,5 +126,7 @@ $("#menu-toggle").click(function(e) {
        e.preventDefault();
        $("#wrapper").toggleClass("toggled");
    });
+
+$('#notes').on('input propertychange')
 </script>
 </body>
