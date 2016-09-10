@@ -6,7 +6,7 @@ var _ = require('underscore')
 router.get('/', function(req, res, next) {
 	res.render('index')
 });
-router.get('/do_index', function(req, res, next){
+/*router.get('/do_index', function(req, res, next){
 	res.render('do')
 });
 router.get('/community_index', function(req, res, next){
@@ -14,7 +14,7 @@ router.get('/community_index', function(req, res, next){
 })
 router.get('/projects_index', function(req, res, next){
 	res.render('Projects')
-})
+})*/
 router.use(function(req, res, next){
     	if(!req.user){
     		res.redirect('/login');
@@ -27,7 +27,7 @@ router.get('/profileInfo', function(req,res,next){
 	User.findById(req.user.id).lean().exec(function(err, user){
 		if (!user.bio){
 			res.render('profileInfo', {
-				
+
 			})
 			return
 		} else {
@@ -80,7 +80,7 @@ router.put('/profileInfo', function(req, res, next){
 	var update = {
 		motto: req.body.motto,
 		name: req.body.name,
-		bio: req.body.bio, 
+		bio: req.body.bio,
 		skills: req.body.skills.toString().split(","),
 		email: req.body.email,
 		phoneNumber: req.body.phone,

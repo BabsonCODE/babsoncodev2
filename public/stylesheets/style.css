@@ -34,8 +34,8 @@ center{
 
 .arrow{
     position: fixed;
-    bottom: 5px; 
-    left: 46%;  
+    bottom: 5px;
+    left: 46%;
 }
 
 .quote{
@@ -80,6 +80,7 @@ a {
 	background-color: #d8d8d8;
 	height: 100%;
 	width: 100%;
+    position: relative;
 }
 .selector{
 	color: #5c5c5c;
@@ -97,6 +98,12 @@ a {
 }
 .selector:hover{
 	background-color: #97b297;
+}
+
+#cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 @media all and (min-width: 300px) and (max-width: 780px){
