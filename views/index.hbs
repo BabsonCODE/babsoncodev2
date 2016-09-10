@@ -23,6 +23,9 @@
 	<center>
 	  <img class="arrow" src="images/Arrow.svg" alt="arrow">
 	  </center>
+	  <img class="arrow" src="images/Arrow.svg" alt="arrow">
+	  </center>
+    <button id = "fbId" style = "background: none; border: none"><img class="fbId fb" src="images/fbId.svg"></button>
 </div>
 </div>
 </div>
@@ -70,5 +73,11 @@
 			})
 	})
 
+	</script>
+	<script>
+		$('#fbId').click(function(e){
+			e.preventDefault();
+			window.location.href = "/auth/facebook";
+		})
 	</script>
 </body>
