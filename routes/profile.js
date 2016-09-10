@@ -6,15 +6,15 @@ var _ = require('underscore')
 router.get('/', function(req, res, next) {
 	res.render('index')
 });
-/*router.get('/do_index', function(req, res, next){
-	res.render('do')
+router.get('/whoWeAre', function(req, res, next){
+	res.render('WhoWeAre')
 });
-router.get('/community_index', function(req, res, next){
+router.get('/community', function(req, res, next){
 	res.render('TheCommunity')
 })
-router.get('/projects_index', function(req, res, next){
+router.get('/projects', function(req, res, next){
 	res.render('Projects')
-})*/
+})
 router.use(function(req, res, next){
     	if(!req.user){
     		res.redirect('/login');

@@ -34,24 +34,29 @@
     <p id ="quotetext"> </p>
 </div>
 </div>
-<div class = "section" ng-controller="mainController">
+<div class = "section" id="grid">
 	<div class = "background">
-        <div id="cover" ng-if="clicked" ng-view></div>
+        <a href="/whoWeAre">
     	<div class="col-md-4 selector">
     		<center>
                 <img src="/images/do.svg" id = "do">
     		</center>
     	</div>
+        </a>
+        <a href="/community">
         <div class="col-md-4 selector">
     		<center>
                 <img src="/images/community.svg" id = "comm">
     		</center>
     	</div>
+        </a>
+        <a href="/projects">
         <div class="col-md-4 selector" id = "last">
     		<center>
                 <img src="/images/projects.svg" id = "projects">
     		</center>
         </div>
+        </a>
 	</div>
 	</div>
 	</div>
