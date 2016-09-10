@@ -4,10 +4,10 @@
     <title>Login With Facebook</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="12" font-family="OpenSans-Light, Open Sans" font-weight="300">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="12" font-family="Helvetica, sans" font-weight="300">
         <text id="Login-With-Facebook">
             <tspan x="-0.733398438" y="10" fill="#FFFFFF">Login With </tspan>
-            <tspan x="59.2724609" y="10" font-family="OpenSans, Open Sans" font-weight="normal" fill="#0047FF">Facebook</tspan>
+            <tspan x="59.2724609" y="10" font-family="Helvetica, sans" font-weight="normal" fill="#0047FF">Facebook</tspan>
             <tspan x="112.733398" y="10" fill="#FFFFFF"> </tspan>
         </text>
     </g>
