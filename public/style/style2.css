@@ -28,6 +28,15 @@ center{
     font-family: Helvetica-light;
     font-size: 2em;
 }
+
+.fbId{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 3%;
+    width: auto;
+}
+
 .fb{
     font-family: 'Helvetica';
 
@@ -72,7 +81,7 @@ center{
 	    width: 15%;
 	    left: 43%;
 	}
-}
+
 
 a {
   color: #00B7FF;
@@ -93,13 +102,23 @@ a {
 	padding-top: 10%;
 	height: 200px
 }
+
+.fbId{
+    position: relative;
+    height: 3%;
+    width: auto;
+    padding-top: 1%;
+    margin-left: 31%;
+    
+}
+
 #last{
 	border:none !important;
 }
 .selector:hover{
 	background-color: #97b297;
 }
-
+}
 @media all and (min-width: 300px) and (max-width: 780px){
 	.selector{
 		border:none;
@@ -115,6 +134,8 @@ a {
 		margin-top: -7%;
 	}
 }
+
+
 @media (min-width: 300px) and (max-width: 760px){
 	.logo{
 			width: 100%;
