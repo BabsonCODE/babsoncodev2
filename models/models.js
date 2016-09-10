@@ -30,8 +30,10 @@ var projectSchema = mongoose.Schema({
 		ref: 'User'
 	},
 	members: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "User"
+		member: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		}
 	}],
 	name: String,
 	description: String,

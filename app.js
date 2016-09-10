@@ -19,6 +19,7 @@ var fb         = 'https://graph.facebook.com/';
 var auth      = require('./routes/auth');
 var profile   = require('./routes/profile');
 var api       = require('./routes/api');
+var projects  = require('./routes/projects');
 
 var app = express();
 var allowCrossDomain = function(req, res, next) {
@@ -127,6 +128,7 @@ passport.use(new FacebookStrategy({
 app.use('/api/', api);
 app.use('/', auth(passport));
 app.use('/', profile);
+app.use('/', projects);
 
 // ----------------------------------------------
 // ERROR HANDLERS

@@ -112,11 +112,57 @@ h3{
   <h4><span style="font-weight:800">Your Phone Number:</span><br>{{phone}}</h4>
   <h4><span style="font-weight:800">Your Email:</span><br>{{email}}</h4>
   <h4><span style="font-weight:800">Your Website:</span><br>{{website}}</h4>
-  <h4><span style="font-weight:800">Your Notes:</span></h4>
-  <textarea id = "notes">{{notes}}</textarea>
+  <hr>
+  <center>
+   <!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Update Your Profile</button>
+	</center>
 
-	</div>
-	<div class="col-md-6" id = "projects"><h3>YOUR PROJECTS</h3></div>
+  <h4><span style="font-weight:800">Your Notes:</span></h4> <p>Your Notes Will Automatically Save as You Type</p>
+  <textarea id = "notes">{{notes}}</textarea>
+</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <form>
+      <div class="form-group">
+     <label for="name">Name</label>
+   	 <input type="text" class="form-control" id="nameInput" value="{{name}}">
+      </div>
+        <div class="form-group">
+     <label for="motto">Motto</label>
+    <input type="text" class="form-control" id="mottoInput" value="{{motto}}">
+      </div>
+        <div class="form-group">
+     <label for="passion">Passion</label>
+    <input type="text" class="form-control" id="bioInput" value="{{bio}}">
+      </div>
+        <div class="form-group">
+     <label for="skills">Skills - please separate with comma</label>
+    <input type="text" class="form-control" id="skillsInput" value="{{skills}}">
+      </div>
+        <div class="form-group">
+     <label for="phone">Phone Number</label>
+    <input type="text" class="form-control" id="phoneInput" value="{{phone}}">
+      </div>
+        <div class="form-group">
+     <label for="email">Email address</label>
+    <input type="email" class="form-control" id="emailInput" value="{{email}}">
+      </div>
+    <div class="form-group">
+     <label for="website">Website</label>
+    <input type="website" class="form-control" id="websiteInput" value="{{website}}">
+      </div>
+      <center><button id = "save">Save</button></center>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="col-md-6" id = "projects"><h3>YOUR PROJECTS</h3></div>
 	
 </div>
 </div>
@@ -127,6 +173,28 @@ $("#menu-toggle").click(function(e) {
        $("#wrapper").toggleClass("toggled");
    });
 
-$('#notes').on('input propertychange')
+$('#notes').on('input propertychange', function(e){
+	 $.ajax('/profileInfoNotes',{'method': 'PUT', 'data': {notes: $('#notes').val()}, function(res){
+	 	console.log(res);
+	 }})
+})
+
+$('#save').on('click', function(e){
+	e.preventDefault();
+	$.ajax('/profileInfo', {'method' : 'PUT', 
+		'data': {
+			name: $('#nameInput').val(),
+			motto: $('#mottoInput').val(),
+			bio: $('#bioInput').val(),
+			skills: $('#skillsInput').val(),
+			phone: $('phoneInput').val(),
+			email: $('emailInput').val(),
+			website: $('websiteInput').val()
+		}, success:function(res){
+			console.log(res);
+			window.location.href = "/profileInfo";
+		}
+	})
+})
 </script>
 </body>
