@@ -4,14 +4,16 @@ var Project = require('../models/models').Project;
 var User = require('../models/models').User;
 
 
-router.get('/projects', function(req, res, next){
-	Project.find({}).populate('projectCreator members.member').exec(function(err, projects){
+router.get('/projectsInternal', function(req, res, next){
+	Project.find({}).populate('projectCreator').exec(function(err, projects){
 		User.findById(req.user.id).lean().exec(function(err, user){
 		console.log(err);
-		console.log(projects);
-			res.render('projectsNode', {
+		console.log(projects[0]);
+		console.log(projects[0].members)
+			res.render('projectsInternal', {
 				imageUrl: user.imageUrl,
-				projects: projects
+				projects: projects,
+				length: projects.length
 			})
 		})
 	})
@@ -38,8 +40,10 @@ router.post('/projects', function(req, res, next){
 })
 
 router.get('/projects/:id', function(req, res, next){
-	Project.findById(req.params.id).lean()
+	Project.findById(req.params.id).lean();
 })
+
+
 // // router.get('/projects/:pid', function(req, res, next){
 
 // // 	Projects.findById(req.params.pid, function(err, project){

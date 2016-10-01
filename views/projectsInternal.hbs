@@ -1,0 +1,136 @@
+{{#if error}}
+<div class = "alert alert-danger" role = "alert">
+  <span class="glychicon glychicon-exclamation-sign" aria-hidden = "true"></span>
+  <span class = "sr-only">Error:</span>
+  {{error}}
+</div>
+{{/if}}
+
+<style>
+.sidebar-nav > .sidebar-brand{
+  height: 45px !important;
+  margin: 10px 0
+}
+.sidebar-nav > .sidebar-brand p{
+  color: #999999;
+  font-size: 1.3em;
+}
+.home{
+  font-size: 1.4em;
+  color: #FC585F !important;
+}
+.line{
+  margin-bottom: 0px !important;
+}
+.current{
+  background: #FC585F !important;
+  color: #FFF !important
+}
+.profile_img{
+  text-indent: 0;
+}
+.profile_img img{
+  width: 100%;
+  height: 250px;
+  padding: 0;
+  margin: 0;
+}
+.main-page{
+  height: 100vh;
+}
+.btn-default{
+  padding: 10px 20px;
+  color: black;
+  border: 1px solid black;
+  background:none;
+}
+textarea{
+  border-radius: 10px;
+  width: 80%;
+  height: 30%;
+  color: black;
+  text-align: center;
+}
+#user{
+
+  border-right: 1px solid black;
+  height: 80%;
+}
+h3{
+  text-align: center;
+}
+#projects{
+  
+  height: 100%;
+}
+#hackathons{
+  border-right: 1px solid black;
+  height: 100%;
+}
+</style>
+<body>
+<div id="wrapper">
+<!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li style="height:6%;">
+              <center>
+                <div class = "profile_img"><img src="{{imageUrl}}"></div>
+                </center>
+              </li>
+                <li class="sidebar-brand">
+                    <a href="/profileInfo" class="home">
+                        H O M E
+                    </a>
+                </li>
+                <hr class = 'line'>
+                <li class="sidebar-brand">
+                    <a href="/projectsInternal" class="current">P R O J E C T S</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="/logout">L O G O U T</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  <div id="page-content-wrapper">
+  <div class = "container">
+  <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">T O G G L E</a>
+  <div class="container main-page">
+  
+  {{#each projects}}
+  <div class="outerbox">
+    <div class="boxImage" style="background-image: url('{{imageUrl}}');"></div>
+    <div class ="boxTitle"><h2>{{name}}</h2></div>
+    <div class="boxOwner"><h3>{{projectCreator.name}}</h3></div>
+    <div class="boxDescription"><strong>Description: </strong><br><br><p>{{description}}</p></div>
+    <center>
+      <a class="explore" href="/project/{{id}}">Explore</a>
+    </center>
+  </div>
+  {{/each}}
+  </div>
+  </div>
+  </div>
+
+
+
+
+
+  <script type="application/javascript">
+
+    $("#menu-toggle").click(function(e) {
+         e.preventDefault();
+         $("#wrapper").toggleClass("toggled");
+    });
+
+    var description = $('.boxDescription p');
+    var height = description.height();
+
+    if (height > 140) {
+      var sliced_str = description.text().slice(0,200) + '...';
+      console.log(sliced_str);
+      $('.boxDescription p').text(sliced_str);
+    }
+  </script>
+</body>

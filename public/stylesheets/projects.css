@@ -1,0 +1,66 @@
+.outerbox{
+	margin: 5% 1.6% 0 1.6%;
+	border: 1px solid black;
+	border-radius: 10px;
+	height: 55%;
+	padding: 0 !important;
+	z-index: 2;
+	overflow-wrap: break-word;
+	overflow-y: scroll;
+	width: 30%;
+	float: left;
+}
+
+.outerbox:hover {
+	box-shadow: 2px 2px 5px gray;
+	cursor: pointer;
+}
+
+.boxImage{
+	height: 50%;
+	width: 100%;
+	background-size: cover;
+	z-index: -1;
+	border-bottom: 1px solid black;
+	border-radius: 10px 10px 0 0;
+}
+.boxTitle{
+	padding: 5% 5% 2% 5%;
+}
+.boxTitle h2{
+	padding: none;
+	margin: 0;
+	font-size: 1.3em;
+	color: #0d0d0d;
+	font-weight: 600;
+}
+.boxOwner{
+	padding-left: 5%
+}
+.boxOwner h3{
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	text-align: left;
+}
+.boxDescription{
+	width: 100%;
+	padding: 5%;
+	font-size: .8em;
+	text-overflow: ellipsis;
+}
+
+.boxDescription strong {
+	font-size: 1.3em;
+}
+
+.boxDescription p{
+	width: 100%;
+	font-size: 1.3em;
+	text-overflow: ellipsis;
+}
+
+a.explore:hover {
+	text-decoration: none;
+	color: gray;
+}

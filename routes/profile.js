@@ -19,8 +19,8 @@ router.use(function(req, res, next){
     	if(!req.user){
     		res.redirect('/login');
     	} else {
-  			return next();
-  		}
+  		return next();
+  	}
   })
 router.get('/profileInfo', function(req,res,next){
 	console.log(req.user.id)

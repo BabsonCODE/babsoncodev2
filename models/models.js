@@ -12,29 +12,29 @@ var userSchema = mongoose.Schema({
 	imageUrl: String,
 	motto: String,
 	skills: Array,
-	projects: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Project'
-	}],
-	events: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Events'
-	}],
 	notes: String,
 	count: Number
 });
+
+var projectUserSchema = mongoose.Schema({
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	project: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Project'
+	},
+	created: {
+		type: Date
+	}
+})
 
 var projectSchema = mongoose.Schema({
 	projectCreator: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	members: [{
-		member: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
-		}
-	}],
 	name: String,
 	description: String,
 	imageUrl: String,
@@ -59,5 +59,6 @@ userSchema.plugin(findOrCreate);
 module.exports = {
 	User: mongoose.model('User', userSchema),
 	Project: mongoose.model('Project', projectSchema),
-	Update: mongoose.model('Update', updateSchema)
+	Update: mongoose.model('Update', updateSchema),
+	ProjectUser: mongoose.model('ProjectUser', projectUserSchema)
 }
