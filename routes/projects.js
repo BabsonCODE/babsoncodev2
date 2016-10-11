@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Project = require('../models/models').Project;
 var User = require('../models/models').User;
-
+var ProjectUser = require('../models/models').ProjectUser;
 
 router.get('/projectsInternal', function(req, res, next){
 	Project.find({}).populate('projectCreator').exec(function(err, projects){
@@ -39,8 +39,84 @@ router.post('/projects', function(req, res, next){
 
 })
 
-router.get('/projects/:id', function(req, res, next){
-	Project.findById(req.params.id).lean();
+router.get('/projectsInternal/:id', function(req, res, next){
+	User.findById(req.user.id).lean().exec(function(error, user){
+		Project.findById(req.params.id).populate('projectCreator').lean().exec(function(err, project){
+				ProjectUser.find({project: project._id}).populate('user').lean().exec(function(err, projectUser){
+						err ? console.log(err) : null
+						console.log(project);
+						console.log(projectUser);
+
+						var check = false;
+
+						for (var x = 0; x < projectUser.length; x++){
+							if(projectUser[x].user._id + "" === req.user.id){
+								check = true;
+								break;
+							}
+						}
+						if (!check){
+							res.render('singleProject', {
+								length: projectUser.length,
+								imageUrl: user.imageUrl,
+								project: project,
+								projectUser: projectUser
+							});
+							return;
+						} else {
+							res.render('singleProjectMember', {
+								length: projectUser.length,
+								imageUrl: user.imageUrl,
+								project: project,
+								projectUser: projectUser
+							})
+						}
+					});
+			});
+		});
+});
+
+router.get('/joinProject/:id', function(req, res, next){
+
+	ProjectUser.find({project: req.params.id}).lean().exec(function(err, projectUser){
+
+		err ? console.log(err) : null
+
+		var created = false;
+
+		for (var i = 0; i < projectUser.length; i++){
+			if(projectUser[0].user + "" === req.user.id){
+				created = true;
+				break;
+			}
+		}
+
+		if (!created){
+			var pU = new ProjectUser({
+			user: req.user.id,
+			project: req.params.id,
+			created: new Date()
+			});
+
+			pU.save(function(error, ProjectUser){
+				error ? console.log(error) : res.redirect('/projectsInternal/' + req.params.id)
+			})
+
+		return;
+		} else {
+			res.redirect('/projectsInternal/' + req.params.id)
+		}
+	})
+})
+
+router.get('/leave/:id', function(req, res, next){
+
+	ProjectUser.find({project: req.params.id, user: req.user.id}).remove().exec(function(err){
+
+			err ? console.log(err) : null
+
+			res.redirect('/projectsInternal/' + req.params.id);
+	})
 })
 
 

@@ -41,7 +41,7 @@ var projectSchema = mongoose.Schema({
 	private: Boolean
 });
 
-var updateSchema = mongoose.Schema({
+var updateProjectSchema = mongoose.Schema({
 	projectParent: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Project"
@@ -59,6 +59,6 @@ userSchema.plugin(findOrCreate);
 module.exports = {
 	User: mongoose.model('User', userSchema),
 	Project: mongoose.model('Project', projectSchema),
-	Update: mongoose.model('Update', updateSchema),
+	Update: mongoose.model('Update', updateProjectSchema),
 	ProjectUser: mongoose.model('ProjectUser', projectUserSchema)
 }

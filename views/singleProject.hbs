@@ -1,0 +1,130 @@
+<link rel = "stylesheet" href="/stylesheets/singleProjects.css">
+
+<body>
+<div id="wrapper">
+<!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li style="height:6%;">
+              <center>
+                <div class = "profile_img"><img src="{{imageUrl}}"></div>
+                </center>
+              </li>
+                <li class="sidebar-brand">
+                    <a href="/profileInfo" class="home">
+                        H O M E
+                    </a>
+                </li>
+                <hr class = 'line'>
+                <li class="sidebar-brand">
+                    <a href="/projectsInternal" class="current">P R O J E C T S</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="/logout">L O G O U T</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  <div id="page-content-wrapper">
+  	<div class = "container">
+  		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">T O G G L E</a>
+  		<div class="container main-page">
+  			<div class=" col-md-12 title">
+  				<center>
+  					<h1>{{project.name}}</h1>
+  					<div class="profileImage imageOwner" style="background-image: url('{{project.projectCreator.imageUrl}}');"></div>
+  					<h6>By {{project.projectCreator.name}}</h6>
+  				</center>
+  			</div>
+
+  			<div class="col-md-6 image">
+  				<div class="projectImage" style="background-image: url('{{project.imageUrl}}')">
+  				</div>
+  			</div>
+
+  			<div class="col-md-6 information">
+  				<div class="membersnumber">
+  				<center>
+  				<h2>{{length}}</h2>
+  				<p>M E M B E R S</p>
+  				</center>
+  				</div>
+  				<h4><span class="bold">Description: </span>{{project.description}}</h4>
+
+  				<center>
+  				<button data-toggle="modal" data-target="#joinModal">J O I N P R O J E C T</button>
+
+  				<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel">
+
+  				<div class="modal-dialog" role="document">
+  				<div class="modal-content">
+  				<div class="modal-header">
+  				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+  					<h4 class="modal-title" id = "joinModalLabel"> Join {{project.name}}</h4>
+  					</div>
+  					<div class="modal-body">
+  						What can you contribute?
+  						<h4 id = "warning"></h4>
+  						<textarea id ="contribution"></textarea>
+  					</div>
+
+  					<div class = "modal-footer">
+  					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  					<button type="button" class="btn btn-primary" id ="join">Join Project</button>
+
+  					</div>
+  				</div>
+  				</div>
+  				</div>
+
+  					<div class="selection">
+  					<button id="postsButton">P O S T S</button>
+  					<button id="membersButton">M E M B E R S</button>
+  				</div>
+  				</center>
+
+  			</div>
+
+ 
+  				<div class="col-md-12 board">
+
+  					<div class="membersBoard">
+  						<h2 id ="titleBoard">M E M B E R S</h2>
+  						{{#each projectUser}}
+  						
+  						<div class = "member">
+  						<div class = "memberImage" style="background-image: url('{{user.imageUrl}}')"></div>
+  						<div class = "memberInfo">
+  						
+  							<h3><a href = "/users/{{user._id}}" title="Visit {{user.name}}">{{user.name}}</a></h3>
+  							<p><span class="bold">What I do:</span> I do the carbon stuff ya know</p>
+  							<p><span class="bold">Skills: </span>
+  								{{user.skills}}	
+  							</p>
+  						</div>
+  						</div>
+  						{{/each}}
+  						</div>
+
+  					<div class="postsBoard">
+
+  					</div>
+
+  				</div>
+  			</div>
+
+  		</div>
+ 	</div>
+  </div>
+
+  <script type="text/javascript">
+  		$('#join').click(function(e){
+  			if ($('#contribution').val().length < 1){
+  				$('#warning').val('Please indicate your role');
+  			} else {
+  				
+  			}
+  		})
+
+  </script>
