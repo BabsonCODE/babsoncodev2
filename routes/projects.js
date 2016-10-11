@@ -48,9 +48,11 @@ router.get('/projectsInternal/:id', function(req, res, next){
 						console.log(projectUser);
 
 						var check = false;
-
+						var userContribution;
 						for (var x = 0; x < projectUser.length; x++){
 							if(projectUser[x].user._id + "" === req.user.id){
+								userContribution = projectUser[x].contribution;
+								console.log('USER CONTRIBUTION',userContribution);
 								check = true;
 								break;
 							}
@@ -60,7 +62,8 @@ router.get('/projectsInternal/:id', function(req, res, next){
 								length: projectUser.length,
 								imageUrl: user.imageUrl,
 								project: project,
-								projectUser: projectUser
+								projectUser: projectUser,
+								contribution: userContribution
 							});
 							return;
 						} else {
@@ -68,7 +71,8 @@ router.get('/projectsInternal/:id', function(req, res, next){
 								length: projectUser.length,
 								imageUrl: user.imageUrl,
 								project: project,
-								projectUser: projectUser
+								projectUser: projectUser,
+								contribution: userContribution
 							})
 						}
 					});
@@ -76,7 +80,7 @@ router.get('/projectsInternal/:id', function(req, res, next){
 		});
 });
 
-router.get('/joinProject/:id', function(req, res, next){
+router.post('/projectsInternal/:id', function(req, res, next){
 
 	ProjectUser.find({project: req.params.id}).lean().exec(function(err, projectUser){
 
@@ -95,6 +99,7 @@ router.get('/joinProject/:id', function(req, res, next){
 			var pU = new ProjectUser({
 			user: req.user.id,
 			project: req.params.id,
+			contribution: req.body.contribution,
 			created: new Date()
 			});
 
@@ -104,7 +109,14 @@ router.get('/joinProject/:id', function(req, res, next){
 
 		return;
 		} else {
-			res.redirect('/projectsInternal/' + req.params.id)
+			var update = {
+				contribution: req.body.contribution
+			}
+			ProjectUser.update({project: req.params.id, user: req.user.id}, update).exec(function(err, update){
+
+					err ? console.log(err) : res.redirect('/projectsInternal/' + req.params.id);
+
+					})
 		}
 	})
 })

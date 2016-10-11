@@ -30,6 +30,10 @@
 
 #join{
   color: black !important;
+  background: none;
+  padding:3%;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .projectImage{
@@ -55,10 +59,9 @@
 }
 .member{
     width: 100%;
-    height: auto;
+    height: 11vh;
     margin-top: 2vh;
     border-top: 1px solid black;
-    padding-top: 1%;
 }
 .memberImage{
     width: 10vh;
@@ -67,11 +70,10 @@
     background-size: cover;
     border: 1px solid black;
     float: left;
-    margin-top: 1vh;
+    margin-top: .5vh;
 }
 .memberInfo{
     float: left;
-    width: 90vh;
     margin-left: 2%;
 }
 .memberInfo h3{

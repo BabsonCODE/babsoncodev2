@@ -52,15 +52,52 @@
   				<h4><span class="bold">Description: </span>{{project.description}}</h4>
 
   				<center>
-  				<button><a href = '/leave/{{project._id}}'>L E A V E P R O J E C T</a></button>
+  				<a href = '/leave/{{project._id}}'><button>L E A V E P R O J E C T</button></a>
+          <button id="update" data-toggle="modal" data-target="#updateModal">U P D A T E </button>
   					<div class="selection">
   					<button id="postsButton">P O S T S</button>
   					<button id="membersButton">M E M B E R S</button>
+
   				</div>
+
   				</center>
 
   			</div>
 
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+            <h4 class="modal-title" id="updateModalLabel">Update Your Role</h4>
+
+            </div>
+
+            <div class="modal-body">
+            <form method="Post">
+              <div class="form-group">
+              <center>
+              <label>Update your Role</label>
+              </center>
+              <input type="text" class="form-control" id ="contribution" name = "contribution" required="true" value="{{contribution}}">
+            </div>
+            </div>
+
+            <div class = "modal-footer">
+            <button type="button" class="btn btn-default" style="padding: 3% !important; border-radius: 10px;" data-dismiss="modal">Close</button>
+            <input type="submit" value="Update" class="btn btn-primary" id ="join">
+
+            </form>
+
+
+            </div>
+
+            </div>
+
+        </div>
+
+        </div>
  
   				<div class="col-md-12 board">
 
@@ -73,7 +110,7 @@
   						<div class = "memberInfo">
   						
   							<h3><a href = "/users/{{user._id}}" title="Visit {{user.name}}">{{user.name}}</a></h3>
-  							<p><span class="bold">What I do:</span> I do the carbon stuff ya know</p>
+  							<p><span class="bold">What I do:</span> {{contribution}}</p>
   							<p><span class="bold">Skills: </span>
   								{{user.skills}}	
   							</p>

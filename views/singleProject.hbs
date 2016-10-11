@@ -64,15 +64,18 @@
   					<h4 class="modal-title" id = "joinModalLabel"> Join {{project.name}}</h4>
   					</div>
   					<div class="modal-body">
-  						What can you contribute?
-  						<h4 id = "warning"></h4>
-  						<textarea id ="contribution"></textarea>
+  					<form method="post">
+  					<div class="form-group">
+  						<label>What can you contribute?</label>
+  						<input type="text" class="form-control" id ="contribution" name = "contribution" required="true"></textarea>
   					</div>
 
   					<div class = "modal-footer">
   					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  					<button type="button" class="btn btn-primary" id ="join">Join Project</button>
+  					<input type="submit" value="Join" class="btn btn-primary" id ="join">
 
+  					</div>
+  					</form>
   					</div>
   				</div>
   				</div>
@@ -98,7 +101,7 @@
   						<div class = "memberInfo">
   						
   							<h3><a href = "/users/{{user._id}}" title="Visit {{user.name}}">{{user.name}}</a></h3>
-  							<p><span class="bold">What I do:</span> I do the carbon stuff ya know</p>
+  							<p><span class="bold">What I do:</span> {{contribution}}</p>
   							<p><span class="bold">Skills: </span>
   								{{user.skills}}	
   							</p>

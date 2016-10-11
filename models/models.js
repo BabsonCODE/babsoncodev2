@@ -25,6 +25,10 @@ var projectUserSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Project'
 	},
+	contribution: {
+		type: String,
+		required: true
+	},
 	created: {
 		type: Date
 	}
