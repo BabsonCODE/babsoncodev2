@@ -1,0 +1,52 @@
+<link rel = "stylesheet" href="/stylesheets/user.css">
+<body>
+<div id="wrapper">
+<!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li style="height:6%;">
+              <center>
+                <div class = "profile_img"><img src="{{imageUrl}}"></div>
+                </center>
+              </li>
+                <li class="sidebar-brand">
+                    <a href="/profileInfo" class="home">
+                        H O M E
+                    </a>
+                </li>
+                <hr class = 'line'>
+                <li class="sidebar-brand">
+                    <a href="/projectsInternal" class="current">P R O J E C T S</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="/logout">L O G O U T</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+            <!-- /#sidebar-wrapper -->
+  <div id="page-content-wrapper">
+  	<div class = "container">
+  		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">T O G G L E</a>
+  		<div class="container main-page">
+  		<center>
+  			<div class="userImage" style="background-image: url('{{user.imageUrl}}');"></div>
+  			<div class="col-md-12 basicInfo">
+  				<h2>{{user.name}}</h2>
+  				<h4><i>{{user.motto}}</i></h4>
+  				<h5><span class="bold">Bio: </span>{{user.bio}}</h5>
+  				<h6><span class="bold">Skills: </span>{{user.skills}}</h6>
+  				<a href="/secureFacebookLink/{{user._id}}" target="_blank">Connect with {{user.name}}</a>
+  			</div>
+
+  			<div class="projectsBoard">
+  				
+
+  			</div>
+  		</center>
+  		</div>
+  	</div>
+  </div>
+  </div>
+  </body>

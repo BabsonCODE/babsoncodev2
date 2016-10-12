@@ -1,0 +1,11 @@
+.userImage{
+	height: 10vh;
+	width: 10vh;
+	border-radius: 50%;
+	border: 1px solid black;
+	background-size: cover;
+	background-repeat: none;
+}
+.bold{
+	font-weight: 700;
+}
