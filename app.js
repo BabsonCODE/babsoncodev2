@@ -21,6 +21,7 @@ var profile   = require('./routes/profile');
 var api       = require('./routes/api');
 var projects  = require('./routes/projects');
 var users     = require('./routes/users');
+var posts     = require('./routes/posts');
 
 var app = express();
 var allowCrossDomain = function(req, res, next) {
@@ -131,6 +132,7 @@ app.use('/', auth(passport));
 app.use('/', profile);
 app.use('/', projects);
 app.use('/', users);
+app.use('/', posts);
 
 // ----------------------------------------------
 // ERROR HANDLERS

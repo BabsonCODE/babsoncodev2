@@ -1,4 +1,5 @@
 <link rel = "stylesheet" href="/stylesheets/user.css">
+
 <body>
 <div id="wrapper">
 <!-- Sidebar -->
@@ -39,12 +40,20 @@
   				<h6><span class="bold">Skills: </span>{{user.skills}}</h6>
   				<a href="/secureFacebookLink/{{user._id}}" target="_blank">Connect with {{user.name}}</a>
   			</div>
-
-  			<div class="projectsBoard">
-  				
-
-  			</div>
   		</center>
+  		<div class="col-md-12">
+			<div class="projectsBoard">
+  				<div class="title"><h3>Projects {{user.name}} is Involved in</h3></div>
+  				{{#each projectUser}}
+  				<div class="project col-md-3">
+  				<a href="/projectsInternal/{{project._id}}"><h4>{{project.name}}</h4></a>
+  				<div class="projectImage" style="background-image: url('{{project.imageUrl}}');">
+  				</div>
+  				<h5><span class="bold">Role: </span>{{contribution}}</h5>
+  				</div>
+  				{{/each}}
+  			
+		</div>
   		</div>
   	</div>
   </div>

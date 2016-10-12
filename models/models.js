@@ -50,11 +50,13 @@ var updateProjectSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Project"
 	},
-	title: String,
-	desc: String,
-	poster:{
+	content: String,
+	user:{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User"
+	},
+	createdAt:{
+		type: Date
 	}
 });
 

@@ -1,5 +1,5 @@
 <link rel = "stylesheet" href="/stylesheets/singleProjects.css">
-
+<script src = "/javascripts/posts.js"></script>
 <body>
 <div id="wrapper">
 <!-- Sidebar -->
@@ -98,6 +98,7 @@
         </div>
 
         </div>
+        <div class="clear"></div>
  
   				<div class="col-md-12 board">
 
@@ -120,7 +121,13 @@
   						</div>
 
   					<div class="postsBoard">
+            <h2 id ="titleBoard">P O S T S</h2>
+            <textarea id="content"></textarea>
+            <div class="clear"></div>
+            <button class="btn btn-default" id ="makePost">Post</button>
+            <div id="postingBoard">
 
+            </div>
   					</div>
 
   				</div>
@@ -131,6 +138,26 @@
   </div>
 
   <script type="text/javascript">
-  		
+  		$('#postsButton').click(function(e){
+          console.log('action');
+          var projectId = "{{project._id}}"
+          $('.membersBoard').fadeOut();
+          setTimeout(function() {$('.postsBoard').fadeIn() }, 500);
+          getPosts(projectId);
+      })
+
+      $('#membersButton').click(function(e){
+        console.log('displayMembers');
+        $('.postsBoard').fadeOut();
+        setTimeout(function() {$('.membersBoard').fadeIn() }, 500);
+      })
+
+      $('#makePost').click(function(e){
+        console.log('making post');
+        var content = $('#content').val();
+        var projectId = "{{project._id}}";
+        setPosts(content, projectId);
+        $('#content').val("");
+      })
 
   </script>
