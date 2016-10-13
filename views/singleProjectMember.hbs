@@ -125,9 +125,7 @@
             <textarea id="content"></textarea>
             <div class="clear"></div>
             <button class="btn btn-default" id ="makePost">Post</button>
-            <div id="postingBoard">
-
-            </div>
+            <div id="postingBoard"></div>
   					</div>
 
   				</div>
@@ -138,16 +136,33 @@
   </div>
 
   <script type="text/javascript">
+       $("#menu-toggle").click(function(e) {
+         e.preventDefault();
+         $("#wrapper").toggleClass("toggled");
+        });
+
+
   		$('#postsButton').click(function(e){
           console.log('action');
           var projectId = "{{project._id}}"
+          $('#membersButton').css('background-color', 'white');
+          $('#postsButton').css('background-color', 'green');
+
+          $('#membersButton').css('color', 'black');
+          $('#postsButton').css('color', 'white');
+
           $('.membersBoard').fadeOut();
           setTimeout(function() {$('.postsBoard').fadeIn() }, 500);
-          getPosts(projectId);
+          mountBoard(projectId);
       })
 
       $('#membersButton').click(function(e){
         console.log('displayMembers');
+        $('#membersButton').css('background-color', 'green');
+        $('#postsButton').css('background-color', 'white');
+        $('#membersButton').css('color', 'white');
+        $('#postsButton').css('color', 'black');
+
         $('.postsBoard').fadeOut();
         setTimeout(function() {$('.membersBoard').fadeIn() }, 500);
       })

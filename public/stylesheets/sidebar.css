@@ -9,7 +9,10 @@
  }
 
 /* Toggle Styles */
-
+.btn-default:hover{
+    color: green !important;
+    background: none !important;
+}
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
