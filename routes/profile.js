@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/models').User;
+var ProjectUser = require('../models/models').ProjectUser;
+
 var _ = require('underscore')
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,26 +27,29 @@ router.use(function(req, res, next){
 router.get('/profileInfo', function(req,res,next){
 	console.log(req.user.id)
 	User.findById(req.user.id).lean().exec(function(err, user){
-		if (!user.bio){
-			res.render('profileInfo', {
+		ProjectUser.find({user: req.user.id}).populate('project').lean().exec(function(error, ProjectUser){
+			
+				if (!user.bio){
+					res.render('profileInfo', {
 
-			})
-			return
-		} else {
-			res.render('profile', {
-				imageUrl: user.imageUrl,
-				name: user.name,
-				motto: user.motto,
-				bio: user.bio,
-				skills: user.skills,
-				notes: user.notes,
-				email: user.email,
-				phone: user.phoneNumber,
-				website: user.website,
+					})
+					return
+				} else {
+					res.render('profile', {
+						imageUrl: user.imageUrl,
+						name: user.name,
+						motto: user.motto,
+						bio: user.bio,
+						skills: user.skills,
+						notes: user.notes,
+						email: user.email,
+						phone: user.phoneNumber,
+						website: user.website,
 
-			})
-			return
-		}
+					})
+					return
+				}
+		})
 	})
 })
 

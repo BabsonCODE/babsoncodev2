@@ -20,7 +20,6 @@ router.post('/posts', function(req, res, next){
 
 router.get('/posts/:id', function(req, res, next){
 	Update.find({projectParent: req.params.id}).sort({createdAt: -1}).populate('user').lean().exec(function(err, updates){
-			console.log(updates);
 			res.json({'success': true, 'posts': updates})
 	})
 })

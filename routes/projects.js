@@ -3,9 +3,10 @@ var router = express.Router();
 var Project = require('../models/models').Project;
 var User = require('../models/models').User;
 var ProjectUser = require('../models/models').ProjectUser;
+var Posts = require('../models/models').Update;
 
 router.get('/projectsInternal', function(req, res, next){
-	Project.find({}).populate('projectCreator').exec(function(err, projects){
+	Project.find({}).sort({createdAt: -1}).populate('projectCreator').exec(function(err, projects){
 		User.findById(req.user.id).lean().exec(function(err, user){
 		console.log(err);
 		console.log(projects[0]);
@@ -19,12 +20,13 @@ router.get('/projectsInternal', function(req, res, next){
 	})
 })
 
-router.post('/projects', function(req, res, next){
+router.post('/projectsInternal', function(req, res, next){
 	var p = new Project({
 		projectCreator: req.user.id,
-		name: req.body.nameInput,
-		description: req.body.descriptionInput,
-		imageUrl: req.body.imageUrl
+		name: req.body.name,
+		description: req.body.description,
+		imageUrl: req.body.image,
+		createdAt: new Date()
 	})
 
 	p.save(function(error, project){
@@ -33,7 +35,18 @@ router.post('/projects', function(req, res, next){
 		}
 		else {
 			console.log(project);
-			res.redirect('/projects');
+			var pU = new ProjectUser({
+				user: req.user.id,
+				project: project._id,
+				contribution: "Project Creator",
+				createdAt: new Date()
+			})
+
+			pU.save(function(err, projectUser){
+			err ? console.log(err) : null
+			res.redirect('/projectsInternal/' + project._id);
+
+			})
 		}
 	})
 
@@ -57,7 +70,17 @@ router.get('/projectsInternal/:id', function(req, res, next){
 								break;
 							}
 						}
-						if (!check){
+
+						if (project.projectCreator._id + "" === req.user.id){
+							res.render('singleProjectOwner', {
+								length: projectUser.length,
+								imageUrl: user.imageUrl,
+								project: project,
+								projectUser: projectUser,
+								contribution: userContribution
+							})
+
+						} else if (!check){
 							res.render('singleProject', {
 								length: projectUser.length,
 								imageUrl: user.imageUrl,
@@ -81,44 +104,72 @@ router.get('/projectsInternal/:id', function(req, res, next){
 });
 
 router.post('/projectsInternal/:id', function(req, res, next){
+	console.log('here');
+	Project.findById(req.params.id).lean().exec(function(error, project){
+			ProjectUser.find({project: req.params.id}).lean().exec(function(err, projectUser){
 
-	ProjectUser.find({project: req.params.id}).lean().exec(function(err, projectUser){
+				err ? console.log(err) : null
 
-		err ? console.log(err) : null
+				var created = false;
 
-		var created = false;
+				for (var i = 0; i < projectUser.length; i++){
+					if(projectUser[0].user + "" === req.user.id){
+						created = true;
+						break;
+					}
+				}
 
-		for (var i = 0; i < projectUser.length; i++){
-			if(projectUser[0].user + "" === req.user.id){
-				created = true;
-				break;
-			}
-		}
+				if (!created){
+					var pU = new ProjectUser({
+					user: req.user.id,
+					project: req.params.id,
+					contribution: req.body.contribution,
+					created: new Date()
+					});
 
-		if (!created){
-			var pU = new ProjectUser({
-			user: req.user.id,
-			project: req.params.id,
-			contribution: req.body.contribution,
-			created: new Date()
-			});
+					pU.save(function(error, ProjectUser){
+						error ? console.log(error) : res.redirect('/projectsInternal/' + req.params.id)
+					})
 
-			pU.save(function(error, ProjectUser){
-				error ? console.log(error) : res.redirect('/projectsInternal/' + req.params.id)
-			})
+					return;
+				} else {
+					if (project.projectCreator + "" === req.user.id){
 
-		return;
-		} else {
-			var update = {
-				contribution: req.body.contribution
-			}
-			ProjectUser.update({project: req.params.id, user: req.user.id}, update).exec(function(err, update){
+					var updateProject = {
+						name: req.body.name,
+						description: req.body.description,
+						imageUrl: req.body.image
+					}
 
-					err ? console.log(err) : res.redirect('/projectsInternal/' + req.params.id);
+					Project.findByIdAndUpdate(req.params.id, updateProject).exec(function(error, project){
+
+						var updateProjectUser = {
+							contribution: req.body.contribution
+						}
+
+						ProjectUser.update({user: req.user.id, project: req.params.id}, updateProjectUser).exec(function(error, updateProjectUser){
+
+							error ? console.log(err) : res.redirect('/projectsInternal/' + req.params.id);
+
+						})
 
 					})
-		}
-	})
+
+					} else {
+
+					var update = {
+						contribution: req.body.contribution
+					}
+
+					ProjectUser.update({project: req.params.id, user: req.user.id}, update).exec(function(err, update){
+
+							err ? console.log(err) : res.redirect('/projectsInternal/' + req.params.id);
+
+							})
+					}
+				}
+			})
+		})
 })
 
 router.get('/leave/:id', function(req, res, next){
@@ -129,6 +180,32 @@ router.get('/leave/:id', function(req, res, next){
 
 			res.redirect('/projectsInternal/' + req.params.id);
 	})
+})
+
+router.get('/delete/:id', function(req,res, next){
+
+	Project.findById(req.params.id).exec(function(error, project){
+
+		if(project.projectCreator + "" !== req.user.id){
+			res.redirect('https://tuunes.co/wp-content/uploads/Fuck-off-Sir-by-Fuck-off-Factory-SNP51409420-600x600.jpg');
+		} else {
+			ProjectUser.find({project: req.params.id}).remove().exec(function(error, projectUser){
+		
+
+				Posts.find({projectParent: req.params.id}).remove().exec(function(error, Posts) {
+
+
+
+					Project.findById(req.params.id).remove().exec(function(error, Project){
+
+						res.redirect('/projectsInternal');
+
+					})
+				})
+			})
+		}
+	})
+
 })
 
 // // /* Wall */

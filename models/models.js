@@ -29,7 +29,7 @@ var projectUserSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	created: {
+	createdAt: {
 		type: Date
 	}
 })
@@ -42,7 +42,10 @@ var projectSchema = mongoose.Schema({
 	name: String,
 	description: String,
 	imageUrl: String,
-	private: Boolean
+	private: Boolean,
+	createdAt: {
+		type: Date
+	}
 });
 
 var updateProjectSchema = mongoose.Schema({
