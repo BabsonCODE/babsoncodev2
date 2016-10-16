@@ -63,7 +63,6 @@ router.post('/profileInfo', function(req, res, next){
 		phoneNumber: req.body.phoneNumber,
 		email: req.body.email,
 		website: req.body.website
-
 	}
 
 	User.findByIdAndUpdate(req.user.id, update, function(error, user){
