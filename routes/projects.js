@@ -10,7 +10,7 @@ router.get('/projectsInternal', function(req, res, next){
 		User.findById(req.user.id).lean().exec(function(err, user){
 		console.log(err);
 		console.log(projects[0]);
-		console.log(projects[0].members)
+		console.log(projects[0].members);
 			res.render('projectsInternal', {
 				imageUrl: user.imageUrl,
 				projects: projects,
