@@ -121,7 +121,7 @@ h3{
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-    <form method="post">
+    <form>
       <div class="form-group">
      <label for="name">Name</label>
    	 <input type="text" class="form-control" id="nameInput" value="{{name}}">
@@ -204,9 +204,9 @@ $('#save').on('click', function(e){
 			motto: $('#mottoInput').val(),
 			bio: $('#bioInput').val(),
 			skills: $('#skillsInput').val(),
-			phone: $('phoneInput').val(),
-			email: $('emailInput').val(),
-			website: $('websiteInput').val()
+			phone: $('#phoneInput').val(),
+			email: $('#emailInput').val(),
+			website: $('#websiteInput').val()
 		}, success:function(res){
 			console.log(res);
 			window.location.href = "/profileInfo";

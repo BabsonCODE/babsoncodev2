@@ -59,10 +59,7 @@ router.post('/profileInfo', function(req, res, next){
 	var update = {
 		motto: req.body.motto.toString(),
 		bio: req.body.bio.toString(),
-		skills: req.body.skills.toString().split(","),
-		phoneNumber: req.body.phoneNumber,
-		email: req.body.email,
-		website: req.body.website
+		skills: req.body.skills.toString().split(",")
 	}
 
 	User.findByIdAndUpdate(req.user.id, update, function(error, user){
