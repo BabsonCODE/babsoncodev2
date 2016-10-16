@@ -6,6 +6,9 @@
 </div>
 {{/if}}
 
+
+<link rel="stylesheet" href="/stylesheets/profile.css">
+
 <style>
 .sidebar-nav > .sidebar-brand{
   height: 45px !important;
@@ -156,7 +159,27 @@ h3{
 
 
 
-<div class="col-md-6" id = "projects"><h3>YOUR PROJECTS</h3></div>
+<div class="col-md-6" id = "projects"><h3>YOUR PROJECTS</h3>
+<center>
+
+{{#if projectUser}}
+{{#each projectUser}}
+<div class="project">
+  <a href="/projectsInternal/{{project._id}}"><h3>{{project.name}}</h3></a>
+  <div class="projectImage" style="background-image: url('{{project.imageUrl}}')"></div>
+</div>
+{{/each}}
+{{else}}
+<center>
+  <h4>You Haven't Joined Any Projects! Click Projects to Get started!</h4>
+</center>
+
+{{/if}}
+
+</center>
+
+
+</div>
 	
 </div>
 </div>

@@ -28,7 +28,9 @@ router.get('/profileInfo', function(req,res,next){
 	console.log(req.user.id)
 	User.findById(req.user.id).lean().exec(function(err, user){
 		ProjectUser.find({user: req.user.id}).populate('project').lean().exec(function(error, ProjectUser){
-			
+
+				console.log(ProjectUser);
+
 				if (!user.bio){
 					res.render('profileInfo', {
 
@@ -45,7 +47,7 @@ router.get('/profileInfo', function(req,res,next){
 						email: user.email,
 						phone: user.phoneNumber,
 						website: user.website,
-
+						projectUser: ProjectUser
 					})
 					return
 				}
