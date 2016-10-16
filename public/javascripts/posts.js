@@ -8,6 +8,7 @@ var render = function(posts){
 	console.log("render being called");
 
 	posts.forEach(function(post, index){
+		var clear = $('<div class = "clear"></div>');
 		var wrapper = $('<div></div>');
         var member = $('<div class = "member"></div>');
         var image = $('<div class = "memberImage" style = "background-image:url(' + post.user.imageUrl + ')"></div>');
@@ -17,6 +18,7 @@ var render = function(posts){
         var time = $('<p>' + post.createdAt + '</p>');
 
         wrapper.append(member);
+        wrapper.append(clear);
         member.append(image);
         member.append(info);
         info.append(name);
