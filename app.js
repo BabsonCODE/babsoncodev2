@@ -92,7 +92,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 passport.use(new FacebookStrategy({
     clientID: process.env.FB_API_ID,
     clientSecret: process.env.FB_API_SECRET,
-    callbackURL: "http://babsoncodev2.herokuapp.com/auth/facebook/callback",
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
 	  profileFields:['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
